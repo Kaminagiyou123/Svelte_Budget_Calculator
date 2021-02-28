@@ -1,11 +1,16 @@
 <script>
     export let name='';
     export let amount=0;
-    let displayAmount=true;
+    export let removeExpense;
+    export let id;
+    let displayAmount=false;
+    const toggleAmount=()=>{
+        displayAmount=!displayAmount
+    }
 </script>
 <article class='single-expense'>
     <div class='expense-info'>
-        <h2>{name} <button class='amount-btn'>
+        <h2>{name} <button class='amount-btn' on:click={toggleAmount}>
             <i class='fas fa-caret-down'/>
         </button>
         </h2>
@@ -14,10 +19,11 @@
         {/if}
     </div>
     <div class='expense-buttons'>
-        <button class='expense-btn edit-btn'>
+        <button class='expense-btn edit-btn' 
+        >
             <i class='fas fa-pen'></i>
         </button>
-        <button class='expense-btn delete-btn'>
+        <button class='expense-btn delete-btn' on:click={()=>removeExpense(id)}>
             <i class='fas fa-trash'></i>
         </button>
     </div>
