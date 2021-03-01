@@ -1,6 +1,7 @@
 <script>
     import {getContext} from 'svelte'
     const removeExpense=getContext('remove');
+    const setModifiedExpense=getContext('modify')
     export let name='';
     export let amount=0;
    
@@ -22,7 +23,7 @@
         {/if}
     </div>
     <div class='expense-buttons'>
-        <button class='expense-btn edit-btn' 
+        <button class='expense-btn edit-btn' on:click={()=>{setModifiedExpense(id)}}
         >
             <i class='fas fa-pen'></i>
         </button>
