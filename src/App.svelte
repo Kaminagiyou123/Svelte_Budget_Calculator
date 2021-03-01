@@ -5,6 +5,7 @@
 	import expensesData from './expenses'
 	import Totals from './Totals.svelte'
 	import { setContext } from 'svelte';
+	import ExpenseForm from './ExpenseForm.svelte'
 	// // variables & functions
 	let expenses=[...expensesData]
 	const removeExpense=(id)=>{
@@ -13,11 +14,16 @@
 	const clearExpenses=()=>{
 		expenses=[]
 	}
+	const addExpense=({name,amount})=>{
+		let expense={id:Math.random()*Date.now(),name,amount}
+		expenses=[expense,...expenses]
+        
+    }
 
 	//reactive
 	
 	$: total=expenses.reduce((acc,curr)=>{
-return (acc+=curr.amount)
+		return (acc+=curr.amount)
 	},0)
 	
 	// setContext
@@ -26,8 +32,8 @@ return (acc+=curr.amount)
 <!-- <style></style> -->
 <!-- CSS/STYLING -->
 <Navbar/>
-
 <main class='content'>
+	<ExpenseForm {addExpense}/>
 	<Totals title='total expense' total={total}/>
 	<ExpenseList {expenses}/>
 	<buttom type='button' class='btn btn-primary btn-block' on:click={clearExpenses}>Clear Expenses</buttom>
