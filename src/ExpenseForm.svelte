@@ -5,6 +5,7 @@
     export let amount=null;
     export let isEditing;
     export let editExpense;
+    export let hideForm
     $: isEmpty =!name||!amount;
     const handleSubmit=()=>{
         if (isEditing){
@@ -37,6 +38,7 @@
        >
        {#if isEditing} edit expense {:else} add expense {/if}
     </button>
-        <button type='button' class='close-btn'><i class='fa fa-times' ></i>close</button>
+        <button type='button' class='close-btn' on:click={hideForm}
+        ><i class='fa fa-times' ></i>close</button>
     </form>
 </section>
