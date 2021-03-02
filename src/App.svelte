@@ -2,7 +2,7 @@
 	//components
 	import Navbar from './Navbar.svelte'
 	import ExpenseList from './ExpenseList.svelte'
-	
+	import Modal from './Modal.svelte'
 	import Totals from './Totals.svelte'
 	import { setContext,onMount,afterUpdate} from 'svelte';
 	import ExpenseForm from './ExpenseForm.svelte'
@@ -52,7 +52,7 @@
 			}	
 		}
 		)
-		sestId=null;
+		setId=null;
 		setAmount=null;
 		setName=''
 		
@@ -85,14 +85,16 @@
 <Navbar {showForm}/>
 <main class='content'>
 	{#if isFormOpen}
+	<Modal>
 	<ExpenseForm {addExpense} 
 	name={setName} amount={setAmount}
 	isEditing={isEditing} {editExpense}
-	{hideForm}/>
+	{hideForm}/></Modal>
 	{/if}
 	<Totals title='total expense' total={total}/>
 	<ExpenseList {expenses}/>
 	<buttom type='button' class='btn btn-primary btn-block' on:click={clearExpenses}>Clear Expenses</buttom>
 </main>
+
 	
 

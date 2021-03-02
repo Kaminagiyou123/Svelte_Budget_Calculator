@@ -1,5 +1,7 @@
 <script>
     import {getContext} from 'svelte'
+    import { fade, blur, fly, slide, scale } from 'svelte/transition';
+    import {quintOut} from 'svelte/easing'
     const removeExpense=getContext('remove');
     const setModifiedExpense=getContext('modify')
     export let name='';
@@ -19,7 +21,7 @@
         </button>
         </h2>
         {#if displayAmount}
-        <h4> amount: ${amount}</h4>
+        <h4 transition:slide> amount: ${amount}</h4>
         {/if}
     </div>
     <div class='expense-buttons'>

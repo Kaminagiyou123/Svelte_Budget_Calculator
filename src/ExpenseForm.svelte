@@ -23,10 +23,12 @@
     const handleSubmit=()=>{
         if (isEditing){
             editExpense({name,amount})
-        }
-        addExpense({name,amount})
+            
+        } else{addExpense({name,amount})}
+        
         name='';
         amount=null 
+        hideForm();
     }
     
   
